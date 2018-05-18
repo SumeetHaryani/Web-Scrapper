@@ -1,0 +1,186 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WebScrapper</title>
+  <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gaegu|Indie+Flower|Orbitron|Economica:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    .jumbotron {
+      margin-top: 10px;
+      background: #393E46;
+    }
+
+    .jumbotron h1 {
+      color: white;
+      font-family: 'Do Hyeon', sans-serif;
+    }
+
+    .jumbotron p {
+      color: white;
+      font-family: 'Economica', sans-serif;
+      font-weight: 700;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    navbar {
+      -webkit-box-shadow: 0 8px 6px -6px #999;
+      -moz-box-shadow: 0 8px 6px -6px #999;
+      box-shadow: 0 8px 6px -6px #999;
+    }
+
+    .all {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+    Web Scraper
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="http://127.0.0.1:8000">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vocabs' %}">Vocabulary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/SumeetHaryani/Web-Scrapper"><i class="fa fa-github" aria-hidden="true" style="font-size:29px;"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <div class="jumbotron  text-dark">
+    <h1 class="display-4"><i class="fa fa-money" aria-hidden="true"style="font-size:80px;"></i>  Get The Best Deal!!!</h1>
+    <p class="lead">Simply search for the product you need, and get realtime comparison of prices of products from Amazon and Flipkart.
+    </p>
+
+    <form method="POST">
+      {{forms.as_p}} {% csrf_token %}
+      <input type="submit" class="btn btn-info btn-lg" value="Scrap">
+    </form>
+
+
+  </div>
+  {% if imgA %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="thumbnail">
+          <img src="{{imgA.0}}" class="img-thumbnail">
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="thumbnail">
+          <img src="{{imgA.1}}" class="img-thumbnail">
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="thumbnail">
+          <img src="{{imgA.2}}" class="img-thumbnail">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+
+
+  <div class="container">
+    <div class="row">
+      {% if recordsA %}
+      <div class="col-lg-6">
+        <div class="alert alert-primary " role="alert" align="center">
+          Amazon.in
+        </div>
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for acc in recordsA %}
+            <tr>
+              <td>{{acc.0}}</td>
+              <td>{{acc.1}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        </table>
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col align-center" class="all">No Result</th>
+            </tr>
+          </thead>
+        </table>
+        {% endif %}
+      </div>
+      {% if recordsF %}
+      <div class="col-lg-6">
+        <!-- <button type="button" class="btn btn-danger btn-lg btn-block">Block level button</button> -->
+        <div class="alert alert-danger " role="alert" align="center">
+          Flipkart
+        </div>
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for acc in recordsF %}
+            <tr>
+              <td>{{acc.0}}</td>
+              <td>{{acc.1}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+          {% else %} {% endif %}
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <script type="text/javascript" src="{% static "js/ws.js" %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html> {% load staticfiles %}
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+
+  <title>Web Scrapper</title>
+
+  <style media="screen">
+    /* body {
+      background: url('http://getwallpapers.com/wallpaper/full/b/4/e/145157.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+    } */
+
+    navbar {
+      -webkit-box-shadow: 0 8px 6px -6px #999;
+      -moz-box-shadow: 0 8px 6px -6px #999;
+      box-shadow: 0 8px 6px -6px #999;
+      /* the rest of your styling */
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .container-fluid {
+      margin-top: 50px;
+    }
+
+    .card {
+      align-content: center;
+    }
+
+    .list-group-item {
+      background: #393E46;
+      color: white;
+      font-family: 'Inconsolata', monospace;
+      text-align: center;
+      font-size: : 3em;
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      Web Scrapper
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="http://127.0.0.1:8000">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vocabs' %}">Vocabulary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/sugamxp/Web-Scrapper"><i class="fa fa-github" aria-hidden="true" style="font-size:29px;"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="span6" style="float: none; margin: 0 auto;">
+        <div class="card" style="width: 60rem;">
+          <img class="card-img-top" src="{% static "pic2.jpg" %}" alt="Card image cap">
+
+          <ul class="list-group list-group-flush ">
+            <li class="list-group-item ">
+              Raj Chetwani
+              <span class="badge badge-primary badge-pill">15</span></li>
+            <li class="list-group-item ">
+              Sugam Devare
+              <span class="badge badge-primary badge-pill">21</span></li>
+            <li class="list-group-item ">
+              Sumeet Haryani
+              <span class="badge badge-primary badge-pill">24</span></li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+
+</body>

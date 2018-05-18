@@ -1,0 +1,131 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WebScrapper</title>
+  <link rel="stylesheet" href="{% static " css/mystyle.css " %}"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gaegu|Indie+Flower|Orbitron|Economica:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+
+    .navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+    }
+  .jumbotron {
+    margin-top:10px;
+    background:#393E46;
+  }
+  .jumbotron h1{
+    color: white;
+    font-family: 'Do Hyeon', sans-serif;
+  }
+  .jumbotron p{
+    color: white;
+    font-family: 'Economica', sans-serif;
+    font-weight: 700;
+  }
+  table{
+    text-align: center;
+  }
+
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+    Web Scrapper
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="http://127.0.0.1:8000">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vocabs' %}">Vocabulary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
+        </li>
+      </ul>
+    </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/sugamxp/Web-Scrapper"><i class="fa fa-github" aria-hidden="true" style="font-size:29px;"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+            </li>
+        </ul>
+    </div>
+
+  </nav>
+    <div class="jumbotron  text-dark">
+      <h1 class="display-4"><i class="fa fa-book" aria-hidden="true"style="font-size:80px;"></i>  Improve Your Vocabulary!!!</h1>
+      <!-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure -->
+      <!-- dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+      <p class="lead">Get Synonyms of the most difficult words at a single click</p>
+      <form method="POST">
+        {{forms.as_p}} {% csrf_token %}
+        <input type="submit" class="btn btn-info btn-lg" value="Scrap">
+      </form>
+    </div>
+
+  <div class="container">
+    <!-- <div class="card text-center">
+      <div class="card-header ">
+        <strong>Definition/Meaning</strong> {% if recordsV %}
+      </div>
+      {% for acc in recordsV %}
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{acc.nameV}}</li>
+      </ul>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No record found</p>
+    {% endif %} -->
+     {% if recordsV %}
+    <table class="table table-striped table-hover">
+      <tbody>
+        <thead class="thead-dark align-center">
+          <tr>
+            <th scope="col">Definition/Meaning</th>
+          </tr>
+        </thead>
+        {% for acc in recordsV %}
+        <tr>
+          <td>{{acc.nameV}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+      {% else %}
+    </table>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col align-center">No Result</th>
+        </tr>
+      </thead>
+    </table>
+    {% endif %}
+  </div>
+
+  <script type="text/javascript" src="{% static "js/ws.js" %}"></script>
+</body>
+
+</html>
